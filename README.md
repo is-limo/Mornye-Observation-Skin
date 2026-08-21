@@ -1,6 +1,8 @@
-# Mornye Observation Skin
+# 莫宁 Observation Skin
 
-面向 DeepSeek Harness 的非官方第三方视觉皮肤。当前公开版本为 `0.3.1`，只兼容 `@deepseek-ai/dsh@0.1.0-rc.6`。
+面向 DeepSeek Harness 的非官方第三方“莫宁”视觉皮肤。当前公开版本为 `0.3.1`，只兼容 `@deepseek-ai/dsh@0.1.0-rc.6`。
+
+中文名固定为“莫宁”。`Mornye` / `MORNYE` 仅是既有包名、文件名和界面字标中的兼容标识，不音译为“莫尔尼”。
 
 它提供浅色三栏观测工作台、可收起的 Appearance 控制器、运行状态投影、克制的轨道/声纹动态，以及只在本地页面中工作的对话摘要、搜索与定位。
 
