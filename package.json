@@ -1,0 +1,33 @@
+{
+  "name": "dsh-mornye-harness-pack",
+  "version": "0.3.1",
+  "description": "Mornye observation workbench and local conversation navigator for DeepSeek Harness",
+  "private": true,
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "styles/mornye.css",
+    "assets/mornye-avatar.png"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "mornyeHarness": {
+    "compatibleDsh": "0.1.0-rc.6",
+    "skin": "observation-workbench",
+    "distribution": "visual-only",
+    "presets": []
+  },
+  "license": "UNLICENSED"
+}

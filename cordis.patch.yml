@@ -1,0 +1,5 @@
+# Mornye Harness skin bundle.
+# This adds one host plugin; it does not replace any official web-app row.
+- insert:
+    - id: mornye-harness-skin
+      name: dsh-mornye-harness-pack

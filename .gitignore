@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.*
+.credentials.yaml
+*.log
+*.zip
+*.sha256
+.DS_Store
+Thumbs.db
