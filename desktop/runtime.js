@@ -206,8 +206,8 @@ export function startMornyeDesktop({ css, markup }) {
     text('mornye-connection-state', 'DESKTOP  ·  LOCAL')
     text('mornye-web-state', 'DESKTOP / LOCAL')
     text('mornye-turn-count', 'VISIBLE ' + entries.length)
-    const stats = find('StatsLine', 'root')?.textContent || ''
-    const counts = stats.match(/(\d+)\s*(?:轮|turns?)\s*[·&]\s*(\d+)\s*(?:步|steps?)/i)
+    const stats = document.querySelector('[data-composer-stats]')?.textContent || find('StatsPills', 'root')?.textContent || ''
+    const counts = stats.match(/(\d+)\s*(?:轮|turns?)\s*(?:[·&]\s*)?(\d+)\s*(?:步|steps?)/i)
     const cache = stats.match(/(?:缓存命中|Cache hit)\s*(\d+(?:\.\d+)?)%/i)
     text('mornye-cache-hit', cache ? cache[1] + '%' : '—')
     byId('mornye-cache-meter').style.width = cache ? Math.min(100, Number(cache[1])) + '%' : '0%'
