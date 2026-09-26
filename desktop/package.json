@@ -1,6 +1,6 @@
 {
   "name": "dsh-mornye-desktop-skin",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Mornye Observation Skin for DeepSeek Harness desktop 0.1.7-rc.2",
   "type": "module",
   "main": "./index.js",

@@ -55,7 +55,46 @@ body[data-mornye-rail="true"] #mornye-observation-panel {
 .mornye-avatar-dock { position: fixed; left: 16px; bottom: 50px; width: calc(var(--mornye-sidebar-width) - 32px); box-sizing: border-box; pointer-events: none; }
 [data-sidebar-collapsed="true"] > .mornye-avatar-dock { display: none; }
 body[data-mornye-desktop="ready"] [data-mornye-sidebar-region] { padding-bottom: 82px; }
-body[data-mornye-desktop="ready"] [data-chat-flow-kind="assistant-step"] { position: relative; }
+/* The desktop bundle does not include the legacy Web conversation layout. */
+body[data-mornye-desktop="ready"] [data-chat-flow-kind="assistant-step"] {
+  position: relative;
+  min-height: 48px;
+  padding: 22px 0 2px 58px;
+}
+body[data-mornye-desktop="ready"] [data-chat-flow-kind="assistant-step"]::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid rgba(89, 112, 160, 0.24);
+  border-radius: 50%;
+  background-color: #eef2f8;
+  background-image: var(--mornye-avatar-image);
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 0 0 4px rgba(247, 249, 252, 0.92);
+  pointer-events: none;
+  content: "";
+}
+body[data-mornye-desktop="ready"] [data-chat-flow-kind="assistant-step"]::after {
+  position: absolute;
+  top: 2px;
+  left: 58px;
+  max-width: calc(100% - 58px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #50617e;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.16em;
+  pointer-events: none;
+  content: "MORNYE  ·  OBSERVATION TERMINAL";
+}
 body[data-mornye-desktop="ready"] [data-chat-flow-kind="user"] { --dsw-specific-bubble: #eaf0f9; }
 [data-mornye-conversation-focus="true"] { outline: 2px solid var(--mornye-active-accent); outline-offset: 4px; border-radius: 8px; }
 body[data-mornye-motion="still"] .mornye-observation__scan,
@@ -64,6 +103,11 @@ body[data-mornye-motion="still"] .mornye-observation__terminal { animation: none
 body:not([data-mornye-desktop="ready"]) #mornye-skin-layer { display: none; }
 @media (max-width: 850px) { .mornye-topbar__title { display: none; } .mornye-topbar__terminal { justify-content: flex-end; } }
 @media (max-width: 520px) { .mornye-topbar__status { display: none; } .mornye-topbar__terminal { padding: 0 12px; } }
+@media (max-width: 520px) {
+  body[data-mornye-desktop="ready"] [data-chat-flow-kind="assistant-step"] { padding-left: 44px; }
+  body[data-mornye-desktop="ready"] [data-chat-flow-kind="assistant-step"]::before { width: 32px; height: 32px; }
+  body[data-mornye-desktop="ready"] [data-chat-flow-kind="assistant-step"]::after { left: 44px; max-width: calc(100% - 44px); content: "MORNYE"; }
+}
 @media (max-height: 760px) { .mornye-observation__stage { height: 150px; } .mornye-observation__stage svg { height: 160px; } }
 @media (prefers-reduced-motion: reduce) {
   #mornye-skin-layer *, #mornye-skin-layer *::before, #mornye-skin-layer *::after { animation: none !important; transition: none !important; }

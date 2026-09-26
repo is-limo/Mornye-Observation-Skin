@@ -11,6 +11,24 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 980 } })
 page.setDefaultTimeout(5000)
 const errors = []
 page.on('pageerror', error => errors.push(error.message))
+async function checkConversationAvatar(size = 40) {
+  const seat = await page.locator('[data-chat-flow-kind="assistant-step"]').first().evaluate(el => {
+    const row = getComputedStyle(el)
+    const avatar = getComputedStyle(el, '::before')
+    const name = getComputedStyle(el, '::after')
+    return { content: avatar.content, image: avatar.backgroundImage, width: avatar.width,
+      height: avatar.height, paddingLeft: parseFloat(row.paddingLeft),
+      paddingTop: parseFloat(row.paddingTop), name: name.content, nameLeft: parseFloat(name.left) }
+  })
+  assert.equal(seat.content, '""', 'Each assistant response must display its character avatar')
+  assert.match(seat.image, /^url\("data:image\/png;base64,/)
+  assert.equal(seat.width, `${size}px`)
+  assert.equal(seat.height, `${size}px`)
+  assert.ok(seat.paddingLeft >= size + 12, 'Message text must clear the avatar')
+  assert.ok(seat.paddingTop >= 20, 'Message text must clear the character name')
+  assert.match(seat.name, /MORNYE/)
+  assert.equal(seat.nameLeft, seat.paddingLeft)
+}
 const html = `<!doctype html><html data-windows-titlebar style="--dsh-windows-titlebar-height:40px"><head><meta charset="utf-8">
 <style>html,body,#root{height:100%;margin:0}body{font-family:Segoe UI,sans-serif}.fixture_frame{height:100%;box-sizing:border-box;display:grid;grid-template-columns:250px minmax(0,1fr) 0;overflow:hidden}.fixture_sidebarCol{background:#f1f5fb;padding:20px}.fixture_centerCol{min-width:0;overflow:auto}.fixture_root{padding:28px}.fixture_bubble{background:#eaf0f9;padding:14px;border-radius:14px}section{margin:24px 0}.fixture_body{line-height:1.8}.fixture_composer{border:1px solid #ccd4e3;border-radius:16px;padding:20px;margin-top:40px}button{font:inherit}</style>
 <style data-plugin-css="fixture/AppFrame.module.css">.fixture_frame{}.fixture_sidebarCol{}.fixture_centerCol{}</style>
@@ -26,6 +44,7 @@ await page.evaluate(() => { window.__ModuleLoader__ = { load(entry) { window.ski
 await page.addScriptTag({ content: bundle.client })
 await page.evaluate(() => window.skin.apply({ effect(start) { window.disposeSkin = start() } }))
 await page.waitForSelector('body[data-mornye-rail="true"]')
+await checkConversationAvatar()
 assert.equal(await page.locator('#mornye-activity-list button').count(), 3)
 await page.evaluate(() => { const stats = document.createElement('div'); stats.dataset.composerStats = ''; stats.textContent = '2 轮 4 步 · 缓存命中 87%'; document.querySelector('.fixture_root').append(stats) })
 await page.waitForFunction(() => document.querySelector('#mornye-cache-hit').textContent === '87%')
@@ -57,11 +76,13 @@ await page.evaluate(() => document.querySelector('.fixture_frame').removeAttribu
 await page.waitForSelector('body[data-mornye-rail="false"]')
 assert.equal(await page.locator('#mornye-observation-panel').isVisible(), false)
 assert.equal(await page.locator('[data-mornye-center]').evaluate(el => getComputedStyle(el).paddingRight), '0px')
+await checkConversationAvatar()
 await page.evaluate(() => document.querySelector('.fixture_frame').setAttribute('data-rightbar-collapsed', ''))
 for (const width of [1000, 760, 480]) {
   await page.setViewportSize({ width, height: 800 })
   await page.waitForSelector('body[data-mornye-rail="false"]')
   assert.equal(await page.locator('#mornye-observation-panel').isVisible(), false)
+  await checkConversationAvatar(width <= 520 ? 32 : 40)
   await page.locator('#mornye-appearance-toggle').click()
   assert.equal(await page.locator('#mornye-appearance-panel').isVisible(), true)
   await page.keyboard.press('Escape')
@@ -71,6 +92,7 @@ await page.setViewportSize({ width: 1440, height: 980 })
 await page.evaluate(() => document.body.setAttribute('data-ds-dark-theme', ''))
 await page.waitForSelector('body[data-mornye-desktop="dark"]')
 assert.equal(await page.locator('#mornye-skin-layer').isVisible(), false)
+assert.equal(await page.locator('[data-chat-flow-kind="assistant-step"]').first().evaluate(el => getComputedStyle(el, '::before').content), 'none')
 await page.evaluate(() => document.body.removeAttribute('data-ds-dark-theme'))
 await page.waitForSelector('body[data-mornye-desktop="ready"]')
 await page.emulateMedia({ reducedMotion: 'reduce' })
@@ -86,9 +108,10 @@ await page.screenshot({ path: resolve(root, 'docs/desktop-preview.png') })
 await page.evaluate(() => window.disposeSkin())
 assert.equal(await page.locator('#mornye-skin-layer, #mornye-desktop-style, [data-mornye-frame]').count(), 0)
 assert.equal(await page.locator('.fixture_frame').evaluate(el => getComputedStyle(el).paddingTop), '0px')
+assert.equal(await page.locator('[data-chat-flow-kind="assistant-step"]').first().evaluate(el => getComputedStyle(el, '::before').content), 'none')
 await page.evaluate(() => window.skin.apply({ effect(start) { window.disposeSkin = start() } }))
 await page.waitForSelector('body[data-mornye-desktop="ready"]')
 assert.equal(await page.locator('#mornye-skin-layer').count(), 1)
 assert.deepEqual(errors, [])
-console.log('Desktop browser checks passed: lifecycle, navigation privacy, settings, native panel, responsive layout, dark mode and reduced motion.')
+console.log('Desktop browser checks passed: conversation avatars, lifecycle, navigation privacy, settings, native panel, responsive layout, dark mode and reduced motion.')
 } finally { await browser.close() }

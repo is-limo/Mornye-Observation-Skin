@@ -1,7 +1,7 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $script:MornyeName = 'dsh-mornye-desktop-skin'
-$script:MornyeVersion = '0.4.0'
+$script:MornyeVersion = '0.4.1'
 $script:RequiredDesktop = '0.1.7-rc.2'
 $script:Utf8 = New-Object System.Text.UTF8Encoding($false)
 

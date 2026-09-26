@@ -1,13 +1,13 @@
 # 莫宁 Observation Skin · 桌面预览版
 
-版本 **0.4.0**，适配 **Windows DeepSeek Harness 桌面预览版 0.1.7-rc.2**。
+版本 **0.4.1**，适配 **Windows DeepSeek Harness 桌面预览版 0.1.7-rc.2**。
 
 延续原设计的浅蓝灰工作台、轨道与金色刻度、莫宁身份卡、外观控制器，以及仅在页面内工作的聊天导航。桌面插件使用 DSH 的客户端插件接口，不修改 `app.asar`，不替换官方程序，不依赖浏览器插件或远程脚本。
 
 ## 下载
 
-- [下载桌面适配版 ZIP](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.0/Mornye-Observation-Skin-Desktop-0.4.0.zip)
-- [下载 ZIP 的 SHA-256 校验文件](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.0/Mornye-Observation-Skin-Desktop-0.4.0.zip.sha256)
+- [下载桌面适配版 ZIP](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.1/Mornye-Observation-Skin-Desktop-0.4.1.zip)
+- [下载 ZIP 的 SHA-256 校验文件](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.1/Mornye-Observation-Skin-Desktop-0.4.1.zip.sha256)
 
 ## 安装
 
@@ -95,7 +95,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-desktop.ps1
 
 产物在 `dist/releases/`，包含 ZIP、ZIP 校验文件及包内 `SHA256SUMS.txt`。打包采用明确文件清单，不收集 `work/`、用户配置或官方运行时。
 
-0.4.0 已在官方 `0.1.7-rc.2` 的 Electron Node 运行时和独立 desktop profile 中完成插件加载检查，并以无界面浏览器检查真实 DSH 前端；没有自动发送模型请求。下图是包含合成示例内容的布局预览，不是用户聊天截图。
+0.4.1 已在官方 `0.1.7-rc.2` 的 Electron Node 运行时和独立 desktop profile 中完成插件加载检查，并以无界面浏览器检查真实 DSH 前端；没有自动发送模型请求。下图是包含合成示例内容的布局预览，不是用户聊天截图。
 
 ![桌面适配布局预览](docs/desktop-preview.png)
 
