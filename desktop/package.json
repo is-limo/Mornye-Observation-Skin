@@ -1,0 +1,22 @@
+{
+  "name": "dsh-mornye-desktop-skin",
+  "version": "0.4.0",
+  "description": "Mornye Observation Skin for DeepSeek Harness desktop 0.1.7-rc.2",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": ["index.js", "client.js", "cordis.patch.yml"],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "inject": ["@deepseek-ai/dsh-client-ui-layout", "@deepseek-ai/dsh-client-ui-chat"]
+    }
+  },
+  "mornye": { "desktopVersion": "0.1.7-rc.2", "visualOnly": true },
+  "license": "MIT"
+}

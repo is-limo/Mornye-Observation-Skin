@@ -29,5 +29,12 @@
     "distribution": "visual-only",
     "presets": []
   },
-  "license": "UNLICENSED"
+  "scripts": {
+    "build:desktop": "node scripts/build-desktop.mjs",
+    "test": "node tests/mornye-semantic-contract.test.mjs && node tests/desktop-runtime.test.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  },
+  "license": "MIT"
 }

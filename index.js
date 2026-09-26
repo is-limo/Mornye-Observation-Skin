@@ -20,7 +20,7 @@ function insertBeforeClosingTag(html, tagName, content) {
   return `${html.slice(0, match.index)}${content}${html.slice(match.index)}`
 }
 
-function skinMarkup() {
+export function skinMarkup() {
   return `<div id="${LAYER_ID}">
   <header id="${TOPBAR_ID}" aria-label="Mornye observation terminal">
     <div class="mornye-topbar__brand" aria-label="Mornye Observation System">

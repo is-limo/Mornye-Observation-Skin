@@ -73,4 +73,4 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\uninstall.ps1
 
 包内 `SHA256SUMS.txt` 列出每个安装文件的 SHA-256。ZIP 旁的 `.sha256` 文件用于校验整个压缩包。
 
-该包标记为 `UNLICENSED`，适合获得作者许可后的私人复制和本地安装，不代表允许上传到 npm 或公开再发布。
+历史 0.3.1 发行包保留原发布时的 `UNLICENSED` 标记。当前仓库的原始代码、样式和文档自 0.4.0 起采用 [MIT 许可](LICENSE)；角色素材不在 MIT 范围内，详见 [素材归属说明](ASSETS-NOTICE.md)。桌面预览版请使用[独立桌面安装说明](README.desktop.zh-CN.md)。
