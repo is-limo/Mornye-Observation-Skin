@@ -15,6 +15,7 @@ foreach ($file in @('install-desktop.ps1','uninstall-desktop.ps1','README.deskto
 }
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'desktop-common.ps1') -Destination (Join-Path $package 'scripts')
 Copy-Item -LiteralPath (Join-Path $repo 'docs\desktop-preview.png') -Destination (Join-Path $package 'docs')
+Copy-Item -LiteralPath (Join-Path $repo 'docs\desktop-parity.zh-CN.md') -Destination (Join-Path $package 'docs')
 Copy-Item -LiteralPath (Join-Path $repo 'dist\desktop') -Destination (Join-Path $package 'desktop-plugin') -Recurse
 $entries = @(Get-ChildItem -LiteralPath $package -File -Recurse | Sort-Object FullName | ForEach-Object {
   $relative = $_.FullName.Substring($package.Length + 1).Replace('\', '/')

@@ -9,6 +9,7 @@ export function buildDesktop(destination = resolve(root, 'dist/desktop')) {
   mkdirSync(destination, { recursive: true })
   const legacy = readFileSync(resolve(root, 'styles/mornye.css'), 'utf8')
   const variables = legacy.slice(legacy.indexOf('body:not'), legacy.indexOf('/* ---------- real rc.6'))
+    .replaceAll('body:not([data-ds-dark-theme])', 'body[data-mornye-desktop="ready"]')
   const decoration = legacy.slice(legacy.indexOf('.mornye-topbar__brand {'), legacy.indexOf('@media (max-width: 1479px)'))
   const dock = legacy.slice(legacy.indexOf('/* ---------- independent sidebar identity card'), legacy.indexOf('/* ---------- observation terminal masthead'))
   const avatar = 'data:image/png;base64,' + readFileSync(resolve(root, 'assets/mornye-avatar.png')).toString('base64')

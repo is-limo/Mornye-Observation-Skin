@@ -1,6 +1,6 @@
 # Privacy Boundary
 
-本文同时说明 0.4.0 Desktop 与 0.3.1 Legacy Web 的数据边界；差异单独标注。
+本文同时说明 0.4.2 Desktop 与 0.3.1 Legacy Web 的数据边界；差异单独标注。
 
 ## 会读取什么
 
@@ -12,6 +12,8 @@
 - 用于把摘要定位回原消息的页面内消息键。
 
 工具、命令、错误行和 Think / Reasoning 不进入对话索引。代码块、按钮、脚本、样式和 `aria-hidden="true"` 内容会在生成摘要前排除。
+
+0.4.2 Desktop 还会排除 `hidden`、CSS `display:none`／`visibility:hidden`／透明度为 0 的内容及未展开的 details 正文；完整 URL 不进入摘要或搜索。原生消息时间仅用于导航标记，工具耗时仅在原生统计弹窗可见时读取，不主动打开弹窗或查询后台。
 
 ## 会保存什么
 
@@ -29,7 +31,7 @@
 
 皮肤不访问第三方域名，也没有遥测、分析 SDK、远程字体或远程脚本。
 
-**0.4.0 Desktop：**皮肤不发起网络请求。客户端 JS 通过 DSH 自身的本地插件加载机制提供；`DESKTOP / LOCAL` 仅说明它在本地界面中运行。
+**0.4.2 Desktop：**皮肤不发起网络请求。客户端 JS 通过 DSH 自身的本地插件加载机制提供；`DESKTOP / LOCAL` 仅说明它在本地界面中运行。
 
 **0.3.1 Legacy Web：**为显示 DSH Web 服务可达状态，每 5 秒对 `new URL('/', window.location.href)` 发起一次同源 GET 请求，使用 `credentials: 'same-origin'`，不附带聊天正文、搜索词或工具参数。这个状态不能证明外网、模型 API 或 web search 可用。
 

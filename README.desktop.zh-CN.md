@@ -1,13 +1,13 @@
 # 莫宁 Observation Skin · 桌面预览版
 
-版本 **0.4.1**，适配 **Windows DeepSeek Harness 桌面预览版 0.1.7-rc.2**。
+版本 **0.4.2**，适配 **Windows DeepSeek Harness 桌面预览版 0.1.7-rc.2**。
 
 延续原设计的浅蓝灰工作台、轨道与金色刻度、莫宁身份卡、外观控制器，以及仅在页面内工作的聊天导航。桌面插件使用 DSH 的客户端插件接口，不修改 `app.asar`，不替换官方程序，不依赖浏览器插件或远程脚本。
 
 ## 下载
 
-- [下载桌面适配版 ZIP](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.1/Mornye-Observation-Skin-Desktop-0.4.1.zip)
-- [下载 ZIP 的 SHA-256 校验文件](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.1/Mornye-Observation-Skin-Desktop-0.4.1.zip.sha256)
+- [下载桌面适配版 ZIP](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.2/Mornye-Observation-Skin-Desktop-0.4.2.zip)
+- [下载 ZIP 的 SHA-256 校验文件](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.2/Mornye-Observation-Skin-Desktop-0.4.2.zip.sha256)
 
 ## 安装
 
@@ -41,6 +41,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install-desktop.ps1 -DshPa
 - 聊天导航只索引当前页面已加载的用户发言和助手可见正文。点击摘要定位消息；搜索不访问历史数据库、不包含推理区域、代码块或工具输出。
 - `DESKTOP / LOCAL` 表示本地桌面界面；不代表网络、API 或模型服务已连接。
 - 缓存命中、轮数、步数仅在当前 DSH 页面提供可解析的统计时显示，否则为 `—`。`READY` 表示页面中已有消息，不保证模型服务可用。
+- 状态区根据当前轮的原生可见信号显示 `RUNNING`、`TOOL`、`DONE`、`ERROR` 或 `STOPPED`；运行耗时来自原生过程栏。`TOOL` 耗时只在原生统计弹窗可见且提供该项时显示，关闭弹窗后恢复 `—`。
+- 对话导航保留原生消息时间；点击长回复会定位到开头。隐藏内容、折叠内容、推理、代码块和完整 URL 不进入摘要或搜索。
+- [旧版设计对照与桌面适配说明](docs/desktop-parity.zh-CN.md)。
 
 ## 升级、卸载与恢复
 
@@ -83,6 +86,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tests/desktop-installer.test
 npm install
 npx playwright install chromium
 node tests/desktop-runtime.test.mjs
+node tests/desktop-parity.test.mjs
 ```
 
 也可用 `PLAYWRIGHT_CHANNEL=msedge` 选择已安装的 Edge，或通过 `PLAYWRIGHT_MODULE` 指定现有 Playwright 模块目录。浏览器测试覆盖插件释放与重载、设置持久化、搜索隔离、原生面板优先、窄窗口、深色模式以及减少动态效果。安装器测试使用项目 `work/` 内的假应用和独立配置，不修改个人 DSH 数据。
@@ -95,7 +99,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-desktop.ps1
 
 产物在 `dist/releases/`，包含 ZIP、ZIP 校验文件及包内 `SHA256SUMS.txt`。打包采用明确文件清单，不收集 `work/`、用户配置或官方运行时。
 
-0.4.1 已在官方 `0.1.7-rc.2` 的 Electron Node 运行时和独立 desktop profile 中完成插件加载检查，并以无界面浏览器检查真实 DSH 前端；没有自动发送模型请求。下图是包含合成示例内容的布局预览，不是用户聊天截图。
+0.4.2 已在官方 `0.1.7-rc.2` 的 Electron Node 运行时和独立 desktop profile 中完成插件加载检查，并以无界面浏览器检查真实 DSH 前端；没有自动发送模型请求。下图是包含合成示例内容的布局预览，不是用户聊天截图。
 
 ![桌面适配布局预览](docs/desktop-preview.png)
 

@@ -2,9 +2,9 @@
 
 DeepSeek Harness 的非官方莫宁视觉皮肤：浅蓝灰观测工作台、细线轨道、外观控制器与本地聊天导航。
 
-**桌面适配版 0.4.1 已开源，支持 Windows 桌面预览版 `0.1.7-rc.2`。** 使用原生客户端插件接口，不修改官方程序文件。
+**桌面适配版 0.4.2 已开源，支持 Windows 桌面预览版 `0.1.7-rc.2`。** 使用原生客户端插件接口，不修改官方程序文件。
 
-- [下载桌面版 ZIP](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.1/Mornye-Observation-Skin-Desktop-0.4.1.zip)
+- [下载桌面版 ZIP](https://github.com/is-limo/Mornye-Observation-Skin/releases/download/v0.4.2/Mornye-Observation-Skin-Desktop-0.4.2.zip)
 - [安装、使用、卸载与源码构建](README.desktop.zh-CN.md)
 - [发行版本与校验文件](https://github.com/is-limo/Mornye-Observation-Skin/releases)
 
@@ -12,7 +12,7 @@ DeepSeek Harness 的非官方莫宁视觉皮肤：浅蓝灰观测工作台、细
 
 | 发行版 | 适用程序 | 安装入口 |
 | --- | --- | --- |
-| **0.4.1 Desktop** | Windows DSH Desktop `0.1.7-rc.2` | `install-desktop.ps1` |
+| **0.4.2 Desktop** | Windows DSH Desktop `0.1.7-rc.2` | `install-desktop.ps1` |
 | 0.3.1 Legacy Web | `@deepseek-ai/dsh@0.1.0-rc.6` | `install.ps1`，见[旧版说明](README.zh-CN.md) |
 
 旧版 Web 插件保留在仓库根目录；桌面插件源码在 `desktop/`。请按对应说明安装，两个版本的安装入口和配置 profile 不同。
